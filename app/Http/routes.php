@@ -21,15 +21,63 @@ Route::get('/about', function () {
 Route::get('/contact', function () {
     return view('home.contact');
 });*/
-Route::get("/", "Results@index");
+Route::get("/crawler", "Crawler@index");
+
+Route::redirect('/','/xsmb');
+Route::get("/xsmb", "Results@index");
 Route::get("/xsmb/{region}", "Results@show");
 
 Route::get("/xsmn", "Results@xsmnIndex");
 Route::get("/xsmn/{region}", "Results@xsmn");
 
-Route::get("/xsmt", "Results@xsmt");
+Route::get("/xsmt", "Results@xsmtIndex");
 Route::get("/xsmt/{region}", "Results@xsmt");
-//Route::get('/mongotest', 'Mongotest@index');
+
+Route::get("crawler/old", "Crawler@getOldResult");
+
+
+
+
+Route::get("/crawler/current", "Crawler@getCurrentResult");
+Route::get("/crawler/xsmn/current", "Crawler@xsmnCurrentResult");
+
+
+//update current records
+Route::get("/updatedatabase/{link}", "Crawler@saveDatabase");
+Route::get("/updatexsmt/{link}", "Crawler@xsmtCurrentResult");
+Route::get("/reload/{link}", "Crawler@reloadCurrentResult");
+Route::get("/getCompanyRegions", "Crawler@getCompanyRegions");
+
+
+//New code for me....................................
+	//Add...............................................
+	Route::get('/lots', 'LotsController@index');
+	Route::get('/lots/serverSide', [
+	   'as'   => 'lots.serverSide',
+	   'uses' => 'LotsController@serverside'
+	]);
+	Route::get('/lots/edit/{id}', 'LotsController@edit');
+	Route::post('/lots/update/{id}', 'LotsController@update');
+	Route::get('/lots/add', 'LotsController@add');
+	Route::post('/lots/store/', 'LotsController@store');
+	Route::get('/lots/delete/{id}', 'LotsController@delete');
+	// just testing
+	Route::get("/lots/result", "LotsController@getCurrentResult");
+	//Route::get("/lots/{region}", "LotsController@getAllRegion");
+	// New code from repo
+	/*Route::get("crawler/old", "Crawler@getOldResult");
+	Route::get("/crawler/current", "Crawler@getCurrentResult");
+	Route::get("/crawler/xsmn/current", "Crawler@xsmnCurrentResult");*/
+	//update current records
+	//Route::get("/updatedatabase/{link}", "Crawler@saveDatabase");
+	//Route::get("/updatexsmt/{link}", "Crawler@xsmtCurrentResult");
+	Route::get('/lots/dropdownlist/{region}', 'LotsController@dropdownlist');
+// ...........................................................................
+
+
+
+
+
 
 // App pages
 Route::auth();

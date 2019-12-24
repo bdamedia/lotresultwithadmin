@@ -7,366 +7,222 @@
 
                 <div class="row">
                     <div class="col-xs-12">
-                        @php $g = 1; @endphp
-                        @foreach($content as $printresult)
+                        @php $g = 1;  $tr ='<tr>'; @endphp
+                        @foreach($content as $key=>$printresult)
+                            {{--{{ $key }}--}}
+                        @php $date = $key; @endphp
+                            @php    $th ='';
+                                    $td1 = '';
+                                    $td2 = '';
+                                    $td3 = '';
+                                    $td4 = '';
+                                    $td5 = '';
+                                    $td6 = '';
+                                    $td7 = '';
+                                    $td8 = '';
+                                    $td9 = '';
+                                    $td10 = '';
+                                    $tdr1 = '';
+                                    $tdr2 = '';
+                                    $boards = '';
 
+                                     @endphp
+                            @foreach($content[$key] as $lot)
 
+                              @php $th .= '<th class="text-center"><a href="'.strtolower($lot["lottery_region"]).'/'.$lot["lottery_company"].'" title="Xổ số '.$lot["lottery_company"].'">'. getCompanyName($lot["lottery_company"]).'</a></th>';
+                              @endphp
+                                @php $prize_1 = json_decode($lot['prize_1']); @endphp
+                                @php $prize_2 = json_decode($lot['prize_2']); @endphp
+                                @php $prize_3 = json_decode($lot['prize_3']); @endphp
+                                @php $prize_4 = json_decode($lot['prize_4']); @endphp
+                                @php $prize_5 = json_decode($lot['prize_5']); @endphp
+                                @php $prize_6 = json_decode($lot['prize_6']); @endphp
+                                @php $prize_7 = json_decode($lot['prize_7']); @endphp
+                                @php $prize_8 = json_decode($lot['prize_8']); @endphp
+                                @php $prize_9 = json_decode($lot['prize_9']); @endphp
+                                @php $board = json_decode($lot['board']); @endphp
+
+                                @php $td2 .= '<td class="text-center">'; @endphp
+                                    @foreach($prize_1->{key($prize_1)} as $k=>$p1)
+                                    @php $td2 .= '<span class=" number-black-bold div-horizontal">'.$p1.'</span></br>'; @endphp
+                                    @endforeach
+                                @php $td2 .= '</td>'; @endphp
+
+                                 @php $td3 .= '<td class="text-center">'; @endphp
+                                    @foreach($prize_2->{key($prize_2)} as $k=>$p2)
+                                    @php $td3 .= '<span class=" number-black-bold div-horizontal">'.$p2.'</span></br>'; @endphp
+                                    @endforeach
+                                @php $td3 .= '</td>'; @endphp
+
+                                 @php $td4 .= '<td class="text-center">'; @endphp
+                                    @foreach($prize_3->{key($prize_3)} as $k=>$p3)
+
+                                    @php $td4 .= '<span class=" number-black-bold div-horizontal">'.$p3.'</span></br>'; @endphp
+                                    @endforeach
+                                @php $td4 .= '</td>'; @endphp
+
+                                @php $td5 .= '<td class="text-center">'; @endphp
+                                    @foreach($prize_4->{key($prize_4)} as $k=>$p4)
+
+                                    @php $td5 .= '<span class=" number-black-bold div-horizontal">'.$p4.'</span></br>'; @endphp
+                                    @endforeach
+                                @php $td5 .= '</td>'; @endphp
+
+                                @php $td6 .= '<td class="text-center">'; @endphp
+                                    @foreach($prize_5->{key($prize_5)} as $k=>$p5)
+
+                                    @php $td6 .= '<span class=" number-black-bold div-horizontal">'.$p5.'</span></br>'; @endphp
+                                    @endforeach
+                                @php $td6 .= '</td>'; @endphp
+
+                                @php $td7 .= '<td class="text-center">'; @endphp
+                                    @foreach($prize_6->{key($prize_6)} as $k=>$p6)
+
+                                    @php $td7 .= '<span class=" number-black-bold div-horizontal">'.$p6.'</span></br>'; @endphp
+                                    @endforeach
+                                @php $td7 .= '</td>'; @endphp
+
+                                @php $td8 .= '<td class="text-center">'; @endphp
+                                    @foreach($prize_7->{key($prize_7)} as $k=>$p7)
+
+                                    @php $td8 .= '<span class=" number-black-bold div-horizontal">'.$p7.'</span></br>'; @endphp
+                                    @endforeach
+                                @php $td8 .= '</td>'; @endphp
+
+                                @php $td9 .= '<td class="text-center">'; @endphp
+                                    @foreach($prize_8->{key($prize_8)} as $k=>$p8)
+
+                                    @php $td9 .= '<span class=" number-black-bold div-horizontal">'.$p8.'</span></br>'; @endphp
+                                    @endforeach
+                                @php $td9 .= '</td>'; @endphp
+
+                                @php $td10 .= '<td class="text-center">'; @endphp
+                                    @foreach($prize_9->{key($prize_9)} as $k=>$p9)
+
+                                    @php $td10 .= '<span class=" number-black-bold div-horizontal">'.$p9.'</span></br>'; @endphp
+                                    @endforeach
+                                @php $td10 .= '</td>'; @endphp
+
+                                @if($board)
+                                    @php $boardRes = $board @endphp
+                                    @php $boards .= '<p class="padding10">Lô tô Bến Tre '.date('D', $date).', '.date('d/m/Y',$date).'</p> <table class="table table-bordered table-loto"><tbody><tr><th class="col-md-2" style="width: 10%;">Đầu</th><th class="col-md-4">Lô Tô</th></tr>'; @endphp
+                                    @foreach($boardRes as $ke=>$bingoData)
+                                      @php  $boards .= '<tr><td class="text-center">'.$ke.'</td><td>'.$bingoData.'</td></tr>'; @endphp
+                                    @endforeach
+                                     @php   $boards .=' </tbody></table>'; @endphp
+                                @endif
+
+                                @php $td1 = '<td style="width: 15%">'.key($prize_1).'</td>'; @endphp
+                                @php $tdr1 = '<td style="width: 15%">'.key($prize_2).'</td>'; @endphp
+                                @php $tdr2 = '<td style="width: 15%">'.key($prize_3).'</td>'; @endphp
+                                @php $tdr3 = '<td style="width: 15%">'.key($prize_4).'</td>'; @endphp
+                                @php $tdr4 = '<td style="width: 15%">'.key($prize_5).'</td>'; @endphp
+                                @php $tdr5 = '<td style="width: 15%">'.key($prize_6).'</td>'; @endphp
+                                @php $tdr6 = '<td style="width: 15%">'.key($prize_7).'</td>'; @endphp
+                                @php $tdr7 = '<td style="width: 15%">'.key($prize_8).'</td>'; @endphp
+                                @php $tdr8 = '<td style="width: 15%">'.key($prize_9).'</td>'; @endphp
+
+                            @endforeach
+
+                        @php $current = current($printresult);   @endphp
                             <div class="block" id='xsmb-{{ $g }}'>
-                                {{--<div class="block-main-heading">
-                                    <h1>{{ $printresult->lottery_region }} - {{ $printresult->lottery_company }}</h1>
+                                <div class="block-main-heading">
+                                    <h1>{{ $current['lottery_region'] }} </h1>
                                 </div>
                                 <div class="list-link">
                                     <h2 class="class-title-list-link">
-                                        <a href="#" title="{{ $printresult->lottery_region }}  {{ $printresult->result_day_time }}" class="u-line">{{ $printresult->lottery_region }}  {{ $printresult->result_day_time }}</a>
+                                        <a href="#" title="{{ $current['lottery_region'] }}  {{ $key }}" class="u-line">{{ $current['lottery_region'] }} >> {{ date('D', $date) }} >> {{ $current['result_day_time'] }}</a>
                                     </h2>
-                                </div>--}}
+                                </div>
                                 <div class="block-main-content">
                                     <table class="table table-bordered table-striped table-xsmn text-table livetn3">
                                         <thead>
                                         <tr>
                                             <th class="text-center">Giải</th>
-
-                                            <th class="text-center"><a href="/xshcm-xo-so-tphcm.html" title="Xổ số TPHCM">TPHCM</a></th>
-
-                                            <th class="text-center"><a href="/xsdt-xo-so-dong-thap.html" title="Xổ số Đồng Tháp">Đồng Tháp</a></th>
-
-                                            <th class="text-center"><a href="/xscm-xo-so-ca-mau.html" title="Xổ số Cà Mau">Cà Mau</a></th>
-                                        </tr>
+                                            @php echo $th; @endphp
+                                              </tr>
                                         </thead>
-                                        <tbody><tr>
-                                            <td>G.8</td>
-                                            <td class="tn_prize">
-                                                <span class="special-prize-lg div-horizontal">48</span>
-                                            </td>
-                                            <td class="tn_prize">
-                                                <span class="special-prize-lg div-horizontal">50</span>
-                                            </td>
-                                            <td class="tn_prize">
-                                                <span class="special-prize-lg div-horizontal">43</span>
-                                            </td>
-                                        </tr>
+                                        <tbody>
+
                                         <tr>
-                                            <td>G.7</td>
-                                            <td class="tn_prize">
-                                                <span class="number-black-bold div-horizontal">517</span>
-                                            </td>
-                                            <td class="tn_prize">
-                                                <span class="number-black-bold div-horizontal">360</span>
-                                            </td>
-                                            <td class="tn_prize">
-                                                <span class="number-black-bold div-horizontal">169</span>
-                                            </td>
+                                            @php echo $td1; @endphp
+                                            @php echo $td2; @endphp
                                         </tr>
+
                                         <tr>
-                                            <td>G.6</td>
-                                            <td class="tn_prize">
-                                                <span class="col-xs-12 number-black-bold div-horizontal">3067</span>
-                                                <span class="col-xs-12 number-black-bold div-horizontal">5050</span>
-                                                <span class="col-xs-12 number-black-bold div-horizontal">5996</span>
-                                            </td>
-                                            <td class="tn_prize">
-                                                <span class="col-xs-12 number-black-bold div-horizontal">1567</span>
-                                                <span class="col-xs-12 number-black-bold div-horizontal">5860</span>
-                                                <span class="col-xs-12 number-black-bold div-horizontal">2914</span>
-                                            </td>
-                                            <td class="tn_prize">
-                                                <span class="col-xs-12 number-black-bold div-horizontal">6555</span>
-                                                <span class="col-xs-12 number-black-bold div-horizontal">0401</span>
-                                                <span class="col-xs-12 number-black-bold div-horizontal">2181</span>
-                                            </td>
+                                            @php echo $tdr1; @endphp
+
+                                            @php echo $td3; @endphp
                                         </tr>
+
                                         <tr>
-                                            <td>G.5</td>
-                                            <td class="tn_prize">
-                                                <span class="number-black-bold div-horizontal">8620</span>
-                                            </td>
-                                            <td class="tn_prize">
-                                                <span class="number-black-bold div-horizontal">1671</span>
-                                            </td>
-                                            <td class="tn_prize">
-                                                <span class="number-black-bold div-horizontal">7167</span>
-                                            </td>
+                                            @php echo $tdr2; @endphp
+
+                                            @php echo $td4; @endphp
                                         </tr>
+
                                         <tr>
-                                            <td>G.4</td>
-                                            <td class="tn_prize">
-                                                <span class="col-xs-12 number-black-bold div-horizontal">16582</span>
-                                                <span class="col-xs-12 number-black-bold div-horizontal">45761</span>
-                                                <span class="col-xs-12 number-black-bold div-horizontal">88445</span>
-                                                <span class="col-xs-12 number-black-bold div-horizontal">60741</span>
-                                                <span class="col-xs-12 number-black-bold div-horizontal">52428</span>
-                                                <span class="col-xs-12 number-black-bold div-horizontal">76668</span>
-                                                <span class="col-xs-12 number-black-bold div-horizontal">94240</span>
-                                            </td>
-                                            <td class="tn_prize">
-                                                <span class="col-xs-12 number-black-bold div-horizontal">86622</span>
-                                                <span class="col-xs-12 number-black-bold div-horizontal">68800</span>
-                                                <span class="col-xs-12 number-black-bold div-horizontal">18191</span>
-                                                <span class="col-xs-12 number-black-bold div-horizontal">31617</span>
-                                                <span class="col-xs-12 number-black-bold div-horizontal">47283</span>
-                                                <span class="col-xs-12 number-black-bold div-horizontal">86749</span>
-                                                <span class="col-xs-12 number-black-bold div-horizontal">82206</span>
-                                            </td>
-                                            <td class="tn_prize">
-                                                <span class="col-xs-12 number-black-bold div-horizontal">10154</span>
-                                                <span class="col-xs-12 number-black-bold div-horizontal">78329</span>
-                                                <span class="col-xs-12 number-black-bold div-horizontal">47274</span>
-                                                <span class="col-xs-12 number-black-bold div-horizontal">10327</span>
-                                                <span class="col-xs-12 number-black-bold div-horizontal">68828</span>
-                                                <span class="col-xs-12 number-black-bold div-horizontal">38288</span>
-                                                <span class="col-xs-12 number-black-bold div-horizontal">23063</span>
-                                            </td>
+                                            @php echo $tdr3; @endphp
+
+                                            @php echo $td5; @endphp
                                         </tr>
+
                                         <tr>
-                                            <td>G.3</td>
-                                            <td class="tn_prize">
-                                                <span class="col-xs-12 number-black-bold div-horizontal">07056</span>
-                                                <span class="col-xs-12 number-black-bold div-horizontal">75330</span>
-                                            </td>
-                                            <td class="tn_prize">
-                                                <span class="col-xs-12 number-black-bold div-horizontal">76399</span>
-                                                <span class="col-xs-12 number-black-bold div-horizontal">69444</span>
-                                            </td>
-                                            <td class="tn_prize">
-                                                <span class="col-xs-12 number-black-bold div-horizontal">11740</span>
-                                                <span class="col-xs-12 number-black-bold div-horizontal">21913</span>
-                                            </td>
+                                            @php echo $tdr4; @endphp
+
+                                            @php echo $td6; @endphp
                                         </tr>
+
                                         <tr>
-                                            <td>G.2</td>
-                                            <td class="tn_prize">
-                                                <span class="col-xs-12 number-black-bold div-horizontal">26302</span>
-                                            </td>
-                                            <td class="tn_prize">
-                                                <span class="col-xs-12 number-black-bold div-horizontal">44765</span>
-                                            </td>
-                                            <td class="tn_prize">
-                                                <span class="col-xs-12 number-black-bold div-horizontal">31975</span>
-                                            </td>
+                                            @php echo $tdr5; @endphp
+
+                                            @php echo $td7; @endphp
                                         </tr>
+
                                         <tr>
-                                            <td>G.1</td>
-                                            <td class="tn_prize">
-                                                <span class="col-xs-12 number-black-bold div-horizontal">48010</span>
-                                            </td>
-                                            <td class="tn_prize">
-                                                <span class="col-xs-12 number-black-bold div-horizontal">07315</span>
-                                            </td>
-                                            <td class="tn_prize">
-                                                <span class="col-xs-12 number-black-bold div-horizontal">55180</span>
-                                            </td>
+                                            @php echo $tdr6; @endphp
+
+                                            @php echo $td8; @endphp
                                         </tr>
+
                                         <tr>
-                                            <td>G.ĐB</td>
-                                            <td class="tn_prize">
-                                                <span class="special-prize-lg div-horizontal">322068</span>
-                                            </td>
-                                            <td class="tn_prize">
-                                                <span class="special-prize-lg div-horizontal">047084</span>
-                                            </td>
-                                            <td class="tn_prize">
-                                                <span class="special-prize-lg div-horizontal">256336</span>
-                                            </td>
+                                            @php echo $tdr7; @endphp
+
+                                            @php echo $td9; @endphp
                                         </tr>
+
+                                        <tr>
+                                            @php echo $tdr8; @endphp
+
+                                            @php echo $td10; @endphp
+                                        </tr>
+
+
+
                                         </tbody>
                                     </table>
-                                   {{-- <table class="table table-bordered table-striped table-xsmb">
-                                        <tbody>
-                                        <tr>
-                                            <td style="width: 15%"> @php $prize_1 = json_decode($printresult->prize_1); @endphp {{ key($prize_1) }}</td>
-                                            <td class="text-center">
-                                                @foreach($prize_1->{key($prize_1)} as $k=>$p1)
-                                                    <span class=" special-code div-horizontal">{{ $p1 }} </span>
-                                                @endforeach
-                                            </td>
-                                        </tr>
 
-                                        <tr>
-                                            <td>@php $prize_2 = json_decode($printresult->prize_2);   @endphp {{ key($prize_2) }}</td>
-                                            <td class="text-center">
-                                                @if(count((array) $prize_2) <= 1)
-                                                    @foreach($prize_2->{key($prize_2)} as $k=>$p2)
-
-                                                        <span class="number-black-bold div-horizontal">{{ $p2 }} </span>
-                                                    @endforeach
-                                                @else
-                                                    @foreach($prize_2->{key($prize_2)} as $k=>$p2)
-                                                        <span class="col-xs-4 special-code div-horizontal">{{ $p2 }} </span>
-                                                    @endforeach
-                                                @endif
-                                            </td>
-                                        </tr>
-
-                                        <tr>
-                                            <td>@php $prize_3 = json_decode($printresult->prize_3);  @endphp {{ key($prize_3) }}</td>
-                                            <td class="text-center">
-                                                @if(count((array) $prize_3) <= 1)
-                                                    @foreach($prize_3->{key($prize_3)} as $k=>$p3)
-                                                        <span class="number-black-bold div-horizontal">{{ $p3 }} </span>
-                                                    @endforeach
-                                                @else
-                                                    @foreach($prize_3->{key($prize_3)} as $k=>$p3)
-                                                        <span class="number-black-bold div-horizontal">{{ $p3 }} </span>
-                                                    @endforeach
-                                                @endif
-                                            </td>
-                                        </tr>
-
-                                        <tr>
-                                            <td>@php $prize_4 = json_decode($printresult->prize_4);  @endphp {{ key($prize_4) }}</td>
-                                            <td class="text-center">
-                                                @if(count((array) $prize_4) <= 1)
-
-                                                    @foreach($prize_4->{key($prize_4)} as $k=>$p4)
-                                                        <span class="number-black-bold div-horizontal">{{ $p4 }} </span>
-                                                    @endforeach
-                                                @else
-                                                    @foreach($prize_4->{key($prize_4)} as $k=>$p4)
-                                                        <span class="number-black-bold div-horizontal">{{ $p4 }} </span>
-                                                    @endforeach
-                                                @endif
-                                            </td>
-                                        </tr>
-
-                                        <tr>
-                                            <td>@php $prize_5 = json_decode($printresult->prize_5);  @endphp {{ key($prize_5) }}</td>
-                                            <td class="text-center">
-                                                @if(count((array) $prize_5) <= 1)
-                                                    @foreach($prize_5 as $k=>$p5)
-                                                        <span class="number-black-bold div-horizontal">@php if(count((array) $p5) > 0 ){ $p5 = implode(', ',(array) $p5); }  @endphp {{ $p5  }} </span>
-                                                    @endforeach
-
-                                                @else
-                                                    @foreach($prize_5->{key($prize_5)} as $k=>$p5)
-                                                        <span class="number-black-bold div-horizontal">{{ $p5 }} </span>
-                                                    @endforeach
-                                                @endif
-                                            </td>
-                                        </tr>
-
-                                        <tr>
-                                            <td>@php  $prize_6 = json_decode($printresult->prize_6);  @endphp {{ key($prize_6) }}</td>
-                                            <td class="text-center">
-                                                @if(count((array) $prize_6) <= 1)
-                                                    @foreach($prize_6 as $k=>$p6)
-                                                        <span class="number-black-bold div-horizontal">@php if(count((array) $p6) > 0 ){ $p6 = implode(', ',(array) $p6); }  @endphp {{ $p6 }} </span>
-                                                    @endforeach
-                                                @else
-                                                    @foreach($prize_6->{key($prize_6)} as $k=>$p6)
-                                                        <span class="number-black-bold div-horizontal">{{ $p6 }} </span>
-                                                    @endforeach
-                                                @endif
-                                            </td>
-                                        </tr>
-
-                                        <tr>
-                                            <td>@php $prize_7 = json_decode($printresult->prize_7);  @endphp {{ key($prize_7) }}</td>
-                                            <td class="text-center">
-                                                @if(count((array) $prize_7) <= 1)
-                                                    @foreach($prize_7 as $k=>$p7)
-                                                        <span class="number-black-bold div-horizontal">@php if(count((array) $p7) > 0 ){ $p7 = implode(', ',(array) $p7); }  @endphp {{ $p7 }} </span>
-                                                    @endforeach
-                                                @else
-                                                    @foreach($prize_7->{key($prize_7)} as $k=>$p7)
-                                                        <span class="number-black-bold div-horizontal">{{ $p7 }} </span>
-                                                    @endforeach
-                                                @endif
-                                            </td>
-                                        </tr>
-
-                                        <tr>
-                                            <td>@php $prize_8 = json_decode($printresult->prize_8);   @endphp {{ key($prize_8) }}</td>
-                                            <td class="text-center">
-                                                @if(count((array) $prize_8) <= 1)
-                                                    @foreach($prize_8 as $k=>$p8)
-                                                        <span class="number-black-bold div-horizontal">@php if(count((array) $p8) > 0 ){ $p8 = implode(', ',(array) $p8); }  @endphp {{ $p8 }} </span>
-                                                    @endforeach
-                                                @else
-                                                    @foreach($prize_8->{key($prize_8)} as $k=>$p8)
-                                                        <span class="number-black-bold div-horizontal">{{ $p8 }} </span>
-                                                    @endforeach
-                                                @endif
-                                            </td>
-                                        </tr>
-
-                                        <tr>
-                                            <td>@php $prize_9 = json_decode($printresult->prize_9);   @endphp {{ key($prize_9) }}</td>
-                                            <td class="text-center">
-                                                @if(count((array) $prize_9) <= 1)
-                                                    @foreach($prize_9 as $k=>$p9)
-                                                        <span class="number-black-bold div-horizontal">@php if(count((array) $p9) > 0 ){ $p9 = implode(', ',(array) $p9); }  @endphp {{ $p9 }} </span>
-                                                    @endforeach
-                                                @else
-                                                    @foreach($prize_9->{key($prize_9)} as $k=>$p9)
-                                                        <span class="number-black-bold div-horizontal">{{ $p9 }} </span>
-                                                    @endforeach
-                                                @endif
-                                            </td>
-                                        </tr>
-
-                                        --}}{{--     @if($printresult->prize_10)
-                                             <tr>
-                                                 <td>@php $prize_10 = json_decode($printresult->prize_10);    @endphp {{ key($prize_10) }}</td>
-                                                 <td class="text-center">
-                                                     @if(count((array) $prize_10) <= 1)
-                                                         @foreach($prize_10 as $k=>$p10)
-                                                             <span class="col-xs-3 special-prize-sm div-horizontal">
-                                                                 @php if(count((array) $p10) > 1 ){ $p10 = implode(', ',$p10); }elseif(count((array) $p10) == 1){  $p10 = $p10; }  @endphp
-                                                                 {{ $p10 }}
-                                                             </span>
-                                                         @endforeach
-                                                     @else
-                                                         @foreach($prize_10->{key($prize_10)} as $k=>$p10)
-                                                             <span class="col-xs-3 special-prize-sm div-horizontal">{{ $p10 }} </span>
-                                                         @endforeach
-                                                     @endif
-                                                 </td>
-                                             </tr>
-                                             @endif--}}{{--
-
-                                        </tbody>
-                                    </table>--}}
                                 </div>
                                 <hr class="line-header"/>
-                                <div class="block-main-content">
 
-                                    <span class="link-pad-left padding10">Lô tô miền Bắc</span>
 
-                                   {{-- <table class="table table-bordered table-loto" style="margin-bottom: 0;">
-                                        <tr>
-                                            <th class="col-md-2" style="width: 10%;">Đầu</th>
-                                            <th class="col-md-4">Lô Tô</th>
-                                        </tr>
-                                        @if($printresult->board)
-                                            @php $boardRes = json_decode($printresult->board) @endphp
-                                            @foreach($boardRes as $ke=>$bingoData)
-                                                <tr>
-                                                    <td class="text-center">{{ $ke }}</td><td>{{ $bingoData }}</td>
-                                                </tr>
-                                            @endforeach
-                                        @endif
-
-                                    </table>--}}
-                                </div>
-                                <div class="link-statistic">
-                                    <ul>
-                                        <li>Xem thống kê <a href="/cau-mien-bac/cau-bach-thu.html" title="Cầu bạch thủ miền Bắc">Cầu bạch thủ miền Bắc</a></li>
-                                        <li>Xem thống kê <a href="/thong-ke-lo-xien.html" title="Lô xiên miền Bắc">Lô xiên miền Bắc</a></li>
-                                        <li>Tham khảo <a href="/thong-ke-xsmb-c2579-article.html" title="Thống kê XSMB">Thống kê XSMB</a></li>
-                                        <li><a href="/">KQXS</a> miền Bắc hôm nay siêu tốc - chính xác, trực tiếp <a
-                                                href="/xsmb-xo-so-mien-bac.html">XSMB</a> lúc 18h15 mỗi ngày</li>
-                                    </ul>
-                                </div>
-                                <p class="text-right margin-10 hidden-xs hidden-sm">
+                                {{--<p class="text-right margin-10 hidden-xs hidden-sm">
                                     <a href="/in-ve-do.html" data-date="13-12-2019" data-groupname="xsmb" class="btn btn-danger btn-invedo"
                                        role="button">In Vé Dò</a>
-                                </p>
+                                </p>--}}
+
+                                <div class="block-main-content view-loto">
+
+
+                                   @php  echo $boards; @endphp
+                                </div>
                             </div>
                             @php $g++; @endphp
                         @endforeach
 
 
                     </div>
+
                 </div>
 
 

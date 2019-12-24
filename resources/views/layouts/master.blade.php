@@ -57,6 +57,9 @@
 <!-- For Datatable -->
 <link href="/assets/css/datatable/jquery.dataTables.min.css" rel="stylesheet">
 
+<link rel="stylesheet" href="/assets/dist/tagify.css">
+
+
 </head>
 
 <body class="no-skin">
@@ -466,6 +469,40 @@
 
 
 
+        <li class="{{ (Request::is('*lots*') ? 'open' : '') }}" >
+          <a href="#" class="dropdown-toggle">
+            <i class="menu-icon fa fa-file-o"></i>
+            <span class="menu-text">
+              lottery
+            </span>
+            <b class="arrow fa fa-angle-down"></b>
+          </a>
+
+          <b class="arrow"></b>
+
+          <ul class="submenu">
+            <li class="{{ (Request::is('*lots') ? 'active' : '') }}">
+              <a href="/lots">
+                <i class="menu-icon fa fa-caret-right"></i>
+                List
+              </a>
+
+              <b class="arrow"></b>
+            </li>
+
+            <li class="{{ (Request::is('*lots/add') ? 'active' : '') }}">
+              <a href="/lots/add">
+                <i class="menu-icon fa fa-caret-right"></i>
+                Add New
+              </a>
+
+              <b class="arrow"></b>
+            </li>
+          </ul>
+        </li>
+
+
+
       </ul><!-- /.nav-list -->
 
       <!-- #section:basics/sidebar.layout.minimize -->
@@ -618,6 +655,8 @@
   <script src="/assets/js/holder.js"></script>
   <!---DATATABLE JS --->
   <script src="/assets/js/datatable/jquery.dataTables.min.js"></script>
+
+  <script src="/assets/dist/tagify.js"></script>
 
   <!-- Page specific JS goes here -->
   @yield('footerjs')

@@ -3851,7 +3851,6 @@ return array(
     'Symfony\\Component\\HttpClient\\MockHttpClient' => $vendorDir . '/symfony/http-client/MockHttpClient.php',
     'Symfony\\Component\\HttpClient\\NativeHttpClient' => $vendorDir . '/symfony/http-client/NativeHttpClient.php',
     'Symfony\\Component\\HttpClient\\Psr18Client' => $vendorDir . '/symfony/http-client/Psr18Client.php',
-    'Symfony\\Component\\HttpClient\\Psr18ExceptionTrait' => $vendorDir . '/symfony/http-client/Psr18Client.php',
     'Symfony\\Component\\HttpClient\\Psr18NetworkException' => $vendorDir . '/symfony/http-client/Psr18Client.php',
     'Symfony\\Component\\HttpClient\\Psr18RequestException' => $vendorDir . '/symfony/http-client/Psr18Client.php',
     'Symfony\\Component\\HttpClient\\Response\\CurlResponse' => $vendorDir . '/symfony/http-client/Response/CurlResponse.php',
